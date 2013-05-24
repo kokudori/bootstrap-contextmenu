@@ -70,6 +70,11 @@
 				.css(tp)
 				.addClass('open');
 
+			var self = this,
+				$target = $(this.$element.attr('data-target'));
+			$target.on('click.context.data-api', function (e) {
+				self.onItem.call(this, e, $(e.target), self.$element);
+			});
 
 			return false;
 		}
@@ -94,10 +99,6 @@
 					.on('click.context.data-api', $.proxy(this.closemenu, this));
 
 			var $target = $(this.$element.attr('data-target'));
-
-			$target.on('click.context.data-api', function (e) {
-				_this.onItem.call(this,e,$(e.target),_this.$element);
-			});
 
 			$('html').on('click.context.data-api', function (e) {
 				if (!e.ctrlKey) {
